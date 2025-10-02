@@ -1,11 +1,85 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vorfreude</title>
 </head>
+
 <body>
-    <h1>Nur noch <span>25x schlafen</span></h1>
+    <h1>Nur noch <span id="time"></span> <span id="unit"></span></h1>
+    <button>oder...</button>
+
+    <script>
+        const timeElement = document.querySelector('#time');
+        const unitElement = document.querySelector('#unit');
+        const button = document.querySelector('button');
+
+        const goalDate = new Date("2025-10-25T20:00:00");
+        const displayModes = ['schlafen', 'Stunden', 'Minuten', 'Sekunden'];
+        let modeIndex = 0;
+        let intervalId;
+
+        function getRemainingValue(mode) {
+            const now = new Date();
+            const remainingTime = goalDate - now;
+            switch (mode) {
+                case 'schlafen': {
+                    // If after 6am, today does not count as a remaining night
+                    let nights = 0;
+                    let tempDate = new Date(now);
+                    if (tempDate.getHours() >= 6) {
+                        // Start counting from tomorrow
+                        tempDate.setDate(tempDate.getDate() + 1);
+                        tempDate.setHours(0, 0, 0, 0);
+                    } else {
+                        // Start counting from today
+                        tempDate.setHours(0, 0, 0, 0);
+                    }
+                    // Count nights until goalDate
+                    while (tempDate < goalDate) {
+                        nights++;
+                        tempDate.setDate(tempDate.getDate() + 1);
+                    }
+                    return nights;
+                }
+                case 'Stunden':
+                    return Math.ceil(remainingTime / (1000 * 60 * 60));
+                case 'Minuten':
+                    return Math.ceil(remainingTime / (1000 * 60));
+                case 'Sekunden':
+                    return Math.ceil(remainingTime / 1000);
+                default:
+                    return 0;
+            }
+        }
+
+        function updateDisplay() {
+            const mode = displayModes[modeIndex];
+            let value = getRemainingValue(mode);
+            if (mode === 'schlafen') {
+            value += 'x';
+            }
+            timeElement.textContent = value;
+            unitElement.textContent = mode;
+        }
+
+        function setUpdateInterval() {
+            clearInterval(intervalId);
+            const mode = displayModes[modeIndex];
+            intervalId = setInterval(updateDisplay, mode === 'Sekunden' ? 1000 : 60000);
+        }
+
+        button.addEventListener('click', () => {
+            modeIndex = (modeIndex + 1) % displayModes.length;
+            updateDisplay();
+            setUpdateInterval();
+        });
+
+        updateDisplay();
+        setUpdateInterval();
+    </script>
 </body>
+
 </html>
