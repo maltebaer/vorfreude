@@ -108,6 +108,8 @@
             let value = getRemainingValue(mode);
             if (mode === 'schlafen') {
                 value += 'x';
+            } else {
+                value = value.toLocaleString('de-DE');
             }
             timeElement.textContent = value;
             unitElement.textContent = mode;
