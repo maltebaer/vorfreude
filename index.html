@@ -20,6 +20,7 @@
             margin: 0;
             font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
             font-weight: normal;
+            color: rebeccapurple;
 
             display: flex;
             flex-direction: column;
@@ -35,11 +36,17 @@
         h1 {
             text-align: center;
             font-size: 3rem;
+
+            display: flex;
+            flex-direction: column;
+
+            line-height: 1.2;
         }
 
         #time {
             font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
             font-size: 5rem;
+            transform: translateY(-0.025em);
         }
 
         button {
@@ -47,15 +54,19 @@
             border: none;
             background-color: rgba(175, 109, 255, 0.85);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 0.5rem;
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 
 <body>
-    <h1>Nur noch <br><span id="time"></span> <br><span id="unit"></span></h1>
+    <h1>
+        <div>Nur noch</div>
+        <div id="time"></div>
+        <div id="unit"></div>
+    </h1>
     <button>oder...</button>
 
     <script>
