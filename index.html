@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Vorfreude</title>
-    <link rel="icon" href="https://fav.farm/heart" />
+    <link rel="icon" href="https://fav.farm/💜" />
     <meta name="theme-color" content="rgba(175, 109, 255, 0.85)">
+    <meta property="og:title" content="Vorfreude" />
+    <meta property="og:description" content="Vorfreude – wie viele Nächte, Stunden, Minuten, Sekunden noch?" />
+    <meta property="og:image" content="https://fav.farm/💜" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vorfreude.baer.website/" />
+
     <style>
         * {
             box-sizing: border-box;
@@ -78,7 +84,7 @@
 
         const goalDate = new Date("2025-10-25T20:00:00");
         const displayModes = ['schlafen', 'Stunden', 'Minuten', 'Sekunden'];
-        let modeIndex = 0;
+        let modeIndex = 3;
         let intervalId;
 
         function getRemainingValue(mode) {
