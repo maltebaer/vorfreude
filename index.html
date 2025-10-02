@@ -5,10 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vorfreude</title>
+    <link rel="icon" href="https://fav.farm/heart" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
+            font-weight: normal;
+
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+            background-color: azure;
+            opacity: 0.8;
+            background-image: radial-gradient(blueviolet 0.5px, transparent 0.5px), radial-gradient(blueviolet 0.5px, #e5e5f7 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        #time {
+            font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+            font-size: 5rem;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background-color: blueviolet;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Nur noch <span id="time"></span> <span id="unit"></span></h1>
+    <h1>Nur noch <br><span id="time"></span> <br><span id="unit"></span></h1>
     <button>oder...</button>
 
     <script>
@@ -59,7 +103,7 @@
             const mode = displayModes[modeIndex];
             let value = getRemainingValue(mode);
             if (mode === 'schlafen') {
-            value += 'x';
+                value += 'x';
             }
             timeElement.textContent = value;
             unitElement.textContent = mode;
